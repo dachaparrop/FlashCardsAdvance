@@ -696,7 +696,6 @@ public final class SegundoMenu extends javax.swing.JFrame {
         this.dispose();
         Login ventanaLogin = new Login();
         ventanaLogin.setVisible(true);
-        System.out.println("los mazos son: "+mazos);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     /**

@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
 public final class TercerMenu extends javax.swing.JFrame {
     
     private static int indiceMazo;
-    private static ArrayList<Carta>cartas;
+    private static ArrayList<Carta>cartas = new ArrayList<>();
     
     public TercerMenu() {
         initComponents();

@@ -531,8 +531,9 @@ public final class SegundoMenu extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         DefaultListModel<String> modeloLista = (DefaultListModel<String>) jList1.getModel();
-        modeloLista.remove(jList1.getSelectedIndex());
-        mazos.remove(jList1.getSelectedIndex());
+        int i = jList1.getSelectedIndex();
+        modeloLista.remove(i);
+        mazos.remove(i);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void panelRoundBtnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRoundBtnEliminarMouseEntered
@@ -695,7 +696,7 @@ public final class SegundoMenu extends javax.swing.JFrame {
         this.dispose();
         Login ventanaLogin = new Login();
         ventanaLogin.setVisible(true);
-        
+        System.out.println("los mazos son: "+mazos);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     /**

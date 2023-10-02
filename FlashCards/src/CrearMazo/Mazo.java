@@ -44,4 +44,9 @@ public class Mazo {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Mazo{" + "nombre=" + nombre + ", cartas=" + cartas + '}';
+    }
+   
 }

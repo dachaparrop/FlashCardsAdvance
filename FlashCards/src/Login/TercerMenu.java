@@ -22,8 +22,10 @@ public final class TercerMenu extends javax.swing.JFrame {
         //iconoPrograma();
         cartas = SegundoMenu.getMazos().get(indiceMazo).getCartas();
         DefaultListModel<String> modeloLista = (DefaultListModel<String>) jList1.getModel();
-        for(int i=0;i<cartas.size();i++){
-            modeloLista.addElement(cartas.get(i).getClave());
+        if(!cartas.isEmpty()){
+            for(int i=0;i<cartas.size();i++){
+                modeloLista.addElement(cartas.get(i).getClave());
+            }
         }
     }
 
@@ -569,8 +571,9 @@ public final class TercerMenu extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         DefaultListModel<String> modeloLista = (DefaultListModel<String>) jList1.getModel();
-        modeloLista.remove(jList1.getSelectedIndex());
-        cartas.remove(jList1.getSelectedIndex());
+        int i = jList1.getSelectedIndex();
+        modeloLista.remove(i);
+        cartas.remove(i);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void panelRoundBtnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRoundBtnEliminarMouseEntered

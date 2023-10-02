@@ -11,30 +11,36 @@ import java.util.ArrayList;
 import CrearMazo.*;
 import javax.swing.DefaultListModel;
 
-public final class SegundoMenu extends javax.swing.JFrame {
-
-    private static ArrayList<Mazo>mazos = new ArrayList<>();
+public final class TercerMenu extends javax.swing.JFrame {
     
-    public SegundoMenu() {
+    private static int indiceMazo;
+    private static ArrayList<Carta>cartas;
+    
+    public TercerMenu() {
         initComponents();
         setLocationRelativeTo(null);
         //iconoPrograma();
-        
+        cartas = SegundoMenu.getMazos().get(indiceMazo).getCartas();
         DefaultListModel<String> modeloLista = (DefaultListModel<String>) jList1.getModel();
-        for(int i=0;i<mazos.size();i++){
-            modeloLista.addElement(mazos.get(i).getNombre());
-        }
-        if(!mazos.isEmpty()){
-            mazos.get(TercerMenu.getIndiceMazo()).setCartas(TercerMenu.getCartas());
+        for(int i=0;i<cartas.size();i++){
+            modeloLista.addElement(cartas.get(i).getClave());
         }
     }
-    
-    public static ArrayList<Mazo> getMazos(){
-        return mazos;
+
+    public static int getIndiceMazo() {
+        return indiceMazo;
+    }
+
+    public static void setIndiceMazo(int indiceMazo) {
+        TercerMenu.indiceMazo = indiceMazo;
     }
     
-    public static void setMazos(ArrayList<Mazo>mazosGuardar){
-        mazos = mazosGuardar;
+    public static ArrayList<Carta> getCartas(){
+        return cartas;
+    }
+    
+    public static void setCartas(ArrayList<Carta>cartasGuardar){
+        cartas = cartasGuardar;
     }
     
     public void btnAgregarHover(){
@@ -91,7 +97,7 @@ public final class SegundoMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         panelRoundBtnEliminar = new Utilidad.PanelRound();
         btnEliminar = new javax.swing.JButton();
-        campoNombre = new javax.swing.JTextField();
+        campoClave = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         panelRoundBtnAgregar = new Utilidad.PanelRound();
         btnAgregar = new javax.swing.JButton();
@@ -101,6 +107,8 @@ public final class SegundoMenu extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         panelRoundBtnVolver = new Utilidad.PanelRound();
         btnVolver = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        campoRespuesta = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         panelRound3 = new Utilidad.PanelRound();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -170,9 +178,15 @@ public final class SegundoMenu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        campoClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoClaveActionPerformed(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Unispace", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nombre:");
+        jLabel1.setText("Clave:");
 
         panelRoundBtnAgregar.setBackground(new java.awt.Color(51, 51, 51));
         panelRoundBtnAgregar.setForeground(new java.awt.Color(105, 105, 105));
@@ -385,18 +399,36 @@ public final class SegundoMenu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel4.setFont(new java.awt.Font("Unispace", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Respuesta:");
+
+        campoRespuesta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoRespuestaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel1))
-                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addGap(15, 15, 15)
+                        .addComponent(campoRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(jLabel1))
+                            .addComponent(campoClave, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelRoundBtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelRoundBtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -404,7 +436,7 @@ public final class SegundoMenu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelRoundBtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelRoundBtnVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(panelRoundBtnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,30 +445,35 @@ public final class SegundoMenu extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelRoundBtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelRoundBtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelRoundBtnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelRoundBtnVer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelRoundBtnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelRoundBtnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(campoClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(panelRoundBtnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(panelRoundBtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(panelRoundBtnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(panelRoundBtnVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 110));
+        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 140));
 
         jPanel2.setBackground(new java.awt.Color(208, 208, 210));
 
@@ -472,31 +509,32 @@ public final class SegundoMenu extends javax.swing.JFrame {
             panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Unispace", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(60, 63, 65));
-        jLabel3.setText("MAZOS");
+        jLabel3.setText("CARTAS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(panelRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(panelRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(285, 285, 285)
+                        .addComponent(jLabel3)))
                 .addContainerGap(38, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(296, 296, 296))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelRound3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -532,7 +570,7 @@ public final class SegundoMenu extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         DefaultListModel<String> modeloLista = (DefaultListModel<String>) jList1.getModel();
         modeloLista.remove(jList1.getSelectedIndex());
-        mazos.remove(jList1.getSelectedIndex());
+        cartas.remove(jList1.getSelectedIndex());
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void panelRoundBtnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRoundBtnEliminarMouseEntered
@@ -557,23 +595,31 @@ public final class SegundoMenu extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         DefaultListModel<String> modeloLista = (DefaultListModel<String>) jList1.getModel();
-        String nombre = campoNombre.getText().trim();
+        String clave = campoClave.getText().trim();
+        String respuesta = campoRespuesta.getText().trim();
         boolean band = true;
-        if(nombre.isBlank()){
+        
+        if(clave.isBlank()){
             band = false;
-            JOptionPane.showMessageDialog(null, "Ingresa un nombre para el mazo");
+            JOptionPane.showMessageDialog(null, "Ingresa una palabra/frase clave para la carta");
         }
+        if(respuesta.isBlank()){
+            band = false;
+            JOptionPane.showMessageDialog(null, "Ingresa la palabra/frase a memorizar para el respaldo de la carta");
+        }
+        
         for(int i=0;i<modeloLista.size();i++){
-            if(nombre.equals(modeloLista.get(i))){
+            if(clave.equals(modeloLista.get(i))){
                 band = false;
-                JOptionPane.showMessageDialog(null, "El nombre del mazo ya se encuentra en uso, intenta con otro");
+                JOptionPane.showMessageDialog(null, "El nombre de la palabra/frase clave de la carta ya se encuentra en uso, intenta con otra");
             }
         }
+        
         if(band){
-            ArrayList<Carta> cartas = new ArrayList<>();
-            mazos.add(new Mazo(nombre, cartas));
-            modeloLista.addElement(nombre);
-            campoNombre.setText("");
+            cartas.add(new Carta(clave, respuesta));
+            modeloLista.addElement(clave);
+            campoClave.setText("");
+            campoRespuesta.setText("");
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -601,18 +647,15 @@ public final class SegundoMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultListModel<String> modeloLista = (DefaultListModel<String>) jList1.getModel();
         if(!modeloLista.isEmpty() && !jList1.isSelectionEmpty()){
-            TercerMenu.setIndiceMazo(jList1.getSelectedIndex());
-            this.dispose();
-            TercerMenu tercermenu = new TercerMenu();
-            tercermenu.setVisible(true);
+            JOptionPane.showMessageDialog(null, cartas.get(jList1.getSelectedIndex()).toString());
         }
         else{ 
             if(modeloLista.isEmpty()){
-                JOptionPane.showMessageDialog(null, "Agrega un mazo");
+                JOptionPane.showMessageDialog(null, "Agrega una carta");
             }
             else{
                 if(jList1.isSelectionEmpty()){
-                    JOptionPane.showMessageDialog(null, "Elige un mazo");
+                    JOptionPane.showMessageDialog(null, "Elige una carta");
                 }
             }
         }        
@@ -642,21 +685,28 @@ public final class SegundoMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultListModel<String> modeloLista = (DefaultListModel<String>) jList1.getModel();
         boolean band = true;
-        String nombre = campoNombre.getText().trim();
-        if(nombre.isBlank()){
+        String clave = campoClave.getText().trim();
+        String respuesta = campoRespuesta.getText().trim();
+        if(clave.isBlank()){
             band = false;
-            JOptionPane.showMessageDialog(null, "Ingresa un nombre para el mazo");
+            JOptionPane.showMessageDialog(null, "Ingresa una palabra/frase clave para la carta");
         }
+        if(respuesta.isBlank()){
+            band = false;
+            JOptionPane.showMessageDialog(null, "Ingresa la palabra/frase a memorizar para el respaldo de la carta");
+        }        
+        
         for(int j=0;j<modeloLista.size();j++){
-            if(nombre.equals(modeloLista.get(j))){
+            if(clave.equals(modeloLista.get(j))){
                 band = false;
-                JOptionPane.showMessageDialog(null, "El nombre del mazo ya se encuentra en uso, intenta con otro");
+                JOptionPane.showMessageDialog(null, "El nombre de la palabra/frase clave de la carta ya se encuentra en uso, intenta con otra");
             }
         }
         if(band){
             int i = jList1.getSelectedIndex();
-            modeloLista.set(i, nombre);
-            mazos.get(i).setNombre(nombre);
+            modeloLista.set(i, clave);
+            cartas.get(i).setClave(clave);
+            cartas.get(i).setRespuesta(respuesta);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -692,11 +742,19 @@ public final class SegundoMenu extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
+        SegundoMenu.getMazos().get(indiceMazo).setCartas(cartas);
+        SegundoMenu ventanaSegundoMenu = new SegundoMenu();
+        ventanaSegundoMenu.setVisible(true);   
         this.dispose();
-        Login ventanaLogin = new Login();
-        ventanaLogin.setVisible(true);
-        
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void campoClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoClaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoClaveActionPerformed
+
+    private void campoRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRespuestaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoRespuestaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -717,21 +775,23 @@ public final class SegundoMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SegundoMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TercerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SegundoMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TercerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SegundoMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TercerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SegundoMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TercerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SegundoMenu().setVisible(true);
+                new TercerMenu().setVisible(true);
             }
         });
     }
@@ -743,10 +803,12 @@ public final class SegundoMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnVer;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JTextField campoNombre;
+    private javax.swing.JTextField campoClave;
+    private javax.swing.JTextField campoRespuesta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -4,8 +4,10 @@
  */
 package Login;
 
+import CrearMazo.Mazo;
 import java.awt.Color;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -16,7 +18,7 @@ import javax.swing.JTextField;
  * @author USUARIO
  */
 public final class Login extends javax.swing.JFrame {
-
+     
     /**
      * Creates new form Login
      */

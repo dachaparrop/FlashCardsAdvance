@@ -24,5 +24,9 @@ public class Carta {
     public void setRespuesta(String respuesta) {
         this.respuesta = respuesta;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Palabra clave: " + clave + "\nRespuesta: " + respuesta;
+    } 
 }

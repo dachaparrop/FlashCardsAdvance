@@ -32,7 +32,7 @@ public class Mazo {
     
     public void eliminarCarta(String nombre){
         for(int i=0;i<cartas.size();i++){
-            if(cartas.get(i).getClave().equals(nombre)){
+            if(cartas.get(i).getPregunta().equals(nombre)){
                 cartas.remove(i);
             }
         }
